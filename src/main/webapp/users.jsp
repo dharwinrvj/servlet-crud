@@ -1,13 +1,12 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<html xmlns:c="http://java.sun.com/jsp/jstl/core">
+<!DOCTYPE html>
+<html>
+
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type">
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
-          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+    <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+          integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" rel="stylesheet">
     <title>Servlet CRUD</title>
 </head>
 
@@ -15,7 +14,7 @@ pageEncoding="UTF-8"%>
 <nav class="navbar navbar-light bg-light p-2">
     <a class="navbar-brand">Servlet CRUD</a>
     <form class="form-inline">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+        <input aria-label="Search" class="form-control mr-sm-2" placeholder="Search" type="search">
         <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
     </form>
 </nav>
@@ -25,17 +24,18 @@ pageEncoding="UTF-8"%>
             <div class="card text-center">
                 <div class="card-body">
                     <h5 class="card-title">User Managment Sytem</h5>
-                    <form method="POST" action="/insert">
+                    <form action="/insert" method="POST">
                         <div class="form-group">
-                            <input type="text" class="form-control" id="name" name="name" placeholder="Name">
+                            <input class="form-control" id="name" name="name" placeholder="Name" type="text">
                         </div>
                         <div class="form-group">
-                            <input type="email" class="form-control" id="email" name="email" placeholder="E-Mail">
+                            <input class="form-control" id="email" name="email" placeholder="E-Mail" type="email">
                         </div>
                         <div class="form-group">
-                            <input type="text" class="form-control" id="country" name="country" placeholder="Country">
+                            <input class="form-control" id="country" name="country" placeholder="Country"
+                                   type="text">
                         </div>
-                        <button type="submit" class="btn btn-outline-success">Submit</button>
+                        <button class="btn btn-outline-success" type="submit">Submit</button>
                     </form>
                 </div>
             </div>
@@ -61,47 +61,29 @@ pageEncoding="UTF-8"%>
                         <td>Mark</td>
                         <td>abc@gmail.com</td>
                         <td>India</td>
-                        <td><a href="#" class="btn btn-outline-primary" role="button" aria-pressed="true">Edit</a></td>
-                        <td><a href="#" class="btn btn-outline-danger" role="button" aria-pressed="true">Delete</a></td>
+                        <td><a aria-pressed="true" class="btn btn-outline-primary" href="#"
+                               role="button">Edit</a></td>
+                        <td><a aria-pressed="true" class="btn btn-outline-danger" href="#"
+                               role="button">Delete</a></td>
                     </tr>
                     </tbody>
                 </table>
             </div>
         </div>
     </div>
-    <%@ page import="java.util.ArrayList" %>
     <% for(int i=0;i<10;i++){ %>
+    <%= i %>
     <%= listUsers.size() %>
-
     <% } %>
-    <c:forEach var="user" items="${listUsers}">
-
-        <tr>
-            <td>
-                <c:out value="<%= user.id %>"/>
-            </td>
-            <td>
-                <c:out value="${user.name}"/>
-            </td>
-            <td>
-                <c:out value="${user.email}"/>
-            </td>
-            <td>
-                <c:out value="${user.country}"/>
-            </td>
-            <a
-                    href="delete?id=<c:out value='${user.id}' />">Delete</a></td>
-        </tr>
-    </c:forEach>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
-        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+<script crossorigin="anonymous"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
-        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous">
+<script crossorigin="anonymous"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js">
 </script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js"
-        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" crossorigin="anonymous">
+<script crossorigin="anonymous"
+        integrity="sha384-VHvPCCyXqtD5DqJeNxl2dtTyhF78xXNXdkwX1CZeRusQfRKp+tA7hAShOK/B/fQ2" src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.min.js">
 </script>
 </body>
 
