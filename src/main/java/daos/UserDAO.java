@@ -15,7 +15,7 @@ public class UserDAO {
     private final String jdbcDriver = "com.mysql.cj.jdbc.Driver";
     private final String jdbcURL = "jdbc:mysql://localhost:3306/servletcrud?useSSL=false";
     private final String jdbcUsername = "root";
-    private final String jdbcPassword = "Localhost123@";
+    private final String jdbcPassword = "D123@localhost";
 
     protected Connection getConnection() {
         Connection connection = null;
