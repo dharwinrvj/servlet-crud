@@ -5,6 +5,6 @@ use servletcrud;
 create table if not exists users (
     id int(3) primary key auto_increment,
     name varchar(30) not null,
-    email varchar(30) not null
-    country varchar(30),
+    email varchar(30) not null,
+    country varchar(30)
 );
