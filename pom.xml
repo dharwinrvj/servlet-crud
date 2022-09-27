@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.dharwin</groupId>
-    <artifactId>CRUD</artifactId>
+    <artifactId>Servlet CRUD</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>war</packaging>
 
-    <name>CRUD Maven Webapp</name>
+    <name>Servlet CRUD</name>
     <!-- FIXME change it to the project's website -->
     <url>http://www.example.com</url>
 
@@ -46,12 +46,6 @@
             <version>2.3.1</version>
             <scope>provided</scope>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/jstl/jstl -->
-        <dependency>
-            <groupId>jstl</groupId>
-            <artifactId>jstl</artifactId>
-            <version>1.2</version>
-        </dependency>
         <!-- https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-jasper -->
         <dependency>
             <groupId>org.apache.tomcat.embed</groupId>
@@ -61,7 +55,7 @@
     </dependencies>
 
     <build>
-        <finalName>CRUD</finalName>
+        <finalName>Servlet CRUD</finalName>
         <pluginManagement>
             <!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
             <plugins>

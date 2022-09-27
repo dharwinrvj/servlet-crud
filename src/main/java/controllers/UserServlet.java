@@ -12,12 +12,11 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.List;
-
 @WebServlet("/")
 public class UserServlet extends HttpServlet {
-    private static final long serialVersionUID = 1L;
-    private final UserDAO userDAO;
 
+    private final UserDAO userDAO;
+    private int id;
     public UserServlet() {
         this.userDAO = new UserDAO();
     }
@@ -27,22 +26,29 @@ public class UserServlet extends HttpServlet {
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String action = request.getServletPath();
+        String action = "";
+        String[] resources = request.getServletPath().split("/");
+        if (resources.length > 0) {
+            action = resources[1];
+        }
+        if (resources.length == 3) {
+            id = Integer.parseInt(resources[2]);
+        }
         try {
             switch (action) {
-                case "/new":
+                case "new":
                     showNewForm(request, response);
                     break;
-                case "/insert":
+                case "insert":
                     insertUser(request, response);
                     break;
-                case "/edit":
+                case "edit":
                     showEditForm(request, response);
                     break;
-                case "/update":
+                case "update":
                     updateUser(request, response);
                     break;
-                case "/delete":
+                case "delete":
                     deleteUser(request, response);
                     break;
                 default:
@@ -56,13 +62,15 @@ public class UserServlet extends HttpServlet {
 
     private void listUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         List<User> listUsers = userDAO.selectAllUsers();
-        RequestDispatcher dispatcher = request.getRequestDispatcher("users.jsp");
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user.jsp");
         request.setAttribute("listUsers", listUsers);
         dispatcher.forward(request, response);
     }
 
     private void showNewForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        RequestDispatcher dispatcher = request.getRequestDispatcher("users.jsp");
+        List<User> listUsers = userDAO.selectAllUsers();
+        RequestDispatcher dispatcher = request.getRequestDispatcher("/user.jsp");
+        request.setAttribute("listUsers", listUsers);
         dispatcher.forward(request, response);
     }
 
@@ -71,32 +79,35 @@ public class UserServlet extends HttpServlet {
         String email = request.getParameter("email");
         String country = request.getParameter("country");
         User newUser = new User(name, email, country);
-        userDAO.insertUser(newUser);
-        response.sendRedirect("list");
+        if (userDAO.insertUser(newUser) == 1) {
+            response.sendRedirect("/list");
+        }
     }
 
     private void showEditForm(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        User existingUser = userDAO.selectUser(id);
-        RequestDispatcher dispatcher = request.getRequestDispatcher("users.jsp");
-        request.setAttribute("user", existingUser);
-        dispatcher.forward(request, response);
+        if (userDAO.selectUser(this.id) != null) {
+            User existingUser = userDAO.selectUser(this.id);
+            List<User> listUsers = userDAO.selectAllUsers();
+            RequestDispatcher dispatcher = request.getRequestDispatcher("/user.jsp");
+            request.setAttribute("existingUser", existingUser);
+            request.setAttribute("listUsers", listUsers);
+            dispatcher.forward(request, response);
+        }
     }
 
     private void updateUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String email = request.getParameter("email");
         String country = request.getParameter("country");
-        User user = new User(id, name, email, country);
-        userDAO.updateUser(user);
-        response.sendRedirect("list");
+        User user = new User(this.id, name, email, country);
+        if (userDAO.updateUser(user)) {
+            response.sendRedirect("/list");
+        }
     }
-
     private void deleteUser(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, SQLException {
-        int id = Integer.parseInt(request.getParameter("id"));
-        userDAO.deleteUser(id);
-        response.sendRedirect("list");
+        if (userDAO.deleteUser(this.id)) {
+            response.sendRedirect("/list");
+        }
     }
 
     private void printSQLException(SQLException ex) {
