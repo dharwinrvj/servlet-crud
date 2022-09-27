@@ -14,12 +14,13 @@
 
         <body>
             <nav class="navbar navbar-dark bg-dark p-2">
-                <a class="navbar-brand">Servlet CRUD</a>
+                <a class="navbar-brand">User Managment System</a>
                 <form class="form-inline">
                     <input aria-label="Search" class="form-control mr-sm-2" placeholder="Search" type="search" />
                     <button class="btn btn-outline-success my-2 my-sm-0" type="submit">
                         Search
                     </button>
+
                 </form>
             </nav>
             <div class="container">
