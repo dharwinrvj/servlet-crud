@@ -9,7 +9,7 @@
             <meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport" />
             <link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
                 integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" rel="stylesheet" />
-            <title>Servlet CRUD</title>
+            <title>User Managment System</title>
         </head>
 
         <body>
